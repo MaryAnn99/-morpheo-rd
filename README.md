@@ -1,6 +1,6 @@
 # Gosleep
 
-![Alt text](img/logo.png?raw=true)
+<img src="img/logo.png" width="200" alt="GoSleep logo">
 
 It's a mobile application that indicates sleep shifts taking into consideration exercise and nutrition, in order to reduce circadian misalignment when changing time zones, as when astronauts travel to launch site and then to the ISS.
 
@@ -9,6 +9,23 @@ The name of the project is the union of two words: "Goldberg" and "sleep".
 This repo contains the implementation of the scheduling algorithm that will be used on the app.
 
 [Project presentation](https://docs.google.com/presentation/d/1PecixftjuvF6Sc_vVn1cZ1xvCyqgzHFQ2GMoHYbDuhk/edit?usp=sharing)
+
+## The scheduling algorithm
+
+The algorithm is based on the article [How To Travel the World Without Jet lag](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2829880/) by Charmane I. Eastman and Helen J. Burgess, and the experiments described in [Advancing Human Circadian Rhythms with Afternoon Melatonin and Morning Intermittent Bright Light](https://academic.oup.com/jcem/article/91/1/54/2843255)
+
+1. The tMin* time is computed based on regular bed and wake time. If sleeping 7 or fewer hours per night, it’s assumed this is 2 hours before the usual wake time. If sleeping more, it’s assumed this is 3 hours before the usual wake time.
+2. The adjustment direction to be applied to the circadian rhythms is determined. If the destination has a greater time zone in the Greenwich Mean Time (GMT), phase advance will be needed, otherwise, phase delay.
+3. If phase advance is needed, sunlight or/and artificial light exposure will take place before going to sleep. Otherwise, the opposite will be done but, in this case, using melatonin 2 hours before DLMO (Dim Light Melatonin Onset).
+4. The tMin* is shifted by shifting the bedtime and wake time by one hour and a half later each day if phase advancing, or one hour earlier per day if phase delaying.
+
+
+*It is the sleeping moment where the body temperature is minimum. It is usually 3 hours before you wake up.
+
+| ![space-1.jpg](img/algorithm_image_example.png?raw=true) |
+|:--:|
+| *Figure 4. Eastman, C. I., & Burgess, H. J. (2009). How To Travel the World Without Jet lag.* |
+
 
 # Project presentation:
 
@@ -55,25 +72,8 @@ or scan the QR code:
 
 ![Alt text](img/app_flow.gif?raw=true "App Flow")
 
-## The scheduling algorithm
-
-The algorithm is based on the article [How To Travel the World Without Jet lag](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2829880/) by Charmane I. Eastman and Helen J. Burgess, and the experiments described in [Advancing Human Circadian Rhythms with Afternoon Melatonin and Morning Intermittent Bright Light](https://academic.oup.com/jcem/article/91/1/54/2843255)
-
-1. The tMin* time is computed based on regular bed and wake time. If sleeping 7 or fewer hours per night, it’s assumed this is 2 hours before the usual wake time. If sleeping more, it’s assumed this is 3 hours before the usual wake time.
-2. The adjustment direction to be applied to the circadian rhythms is determined. If the destination has a greater time zone in the Greenwich Mean Time (GMT), phase advance will be needed, otherwise, phase delay.
-3. If phase advance is needed, sunlight or/and artificial light exposure will take place before going to sleep. Otherwise, the opposite will be done but, in this case, using melatonin 2 hours before DLMO (Dim Light Melatonin Onset).
-4. The tMin* is shifted by shifting the bedtime and wake time by one hour and a half later each day if phase advancing, or one hour earlier per day if phase delaying.
-
-
-*It is the sleeping moment where the body temperature is minimum. It is usually 3 hours before you wake up.
-
-| ![space-1.jpg](img/algorithm_image_example.png?raw=true) |
-|:--:|
-| *Figure 4. Eastman, C. I., & Burgess, H. J. (2009). How To Travel the World Without Jet lag.* |
-
 ## References
 
-- [Jet Lag Rooster (example)](https://www.jetlagrooster.com/example)
 - [Paper 1 - How To Travel the World Without Jet lag](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2829880/)
 - [Paper 2 - Preflight Adjustment to Eastward Travel: 3 Days of Advancing Sleep with and without Morning Bright Light](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1262683/?tool=pmcentrez&report=abstract)
 - [About NASA's space scheduling](https://space.stackexchange.com/questions/20821/what-kind-of-time-regiment-schedule-do-iss-astronauts-have)
