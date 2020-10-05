@@ -147,11 +147,12 @@ class Schedule {
     }
 
     int hoursLessOrMoreCounter = this.hoursPerDay;
-
+    int delayHours = trip.destinationTimeZone - trip.originTimeZone;
     while(true){
       if (index >= trip.flightStartDate.difference(this.startTrackingDay).inDays) {
         break;
       }
+      delayHours --;
       DateTime newBedDateTime = this.events[index].startDate.add(new Duration(hours: 24 + (hoursLessOrMore * hoursLessOrMoreCounter)));
 
       DateTime newWakeDateTime = this.events[index].endDate.add(new Duration(hours: 24 + (hoursLessOrMore * hoursLessOrMoreCounter)));
@@ -172,8 +173,14 @@ class Schedule {
     DateTime currentWakeDateTimeNewTZ = lastGoToBedNewTZ.add(new Duration(hours: sleepHours.inHours));
 
     this.events.add(new Event(type: sleepEventType, startDate: lastGoToBedNewTZ, endDate: currentWakeDateTimeNewTZ));
+    while(delayHours > 0) {
+      delayHours --;
+      DateTime newBedDateTime = this.events[this.events.length - 1].startDate.add(new Duration(hours: 24 + (hoursLessOrMore * hoursLessOrMoreCounter)));
 
-    int delayHours = trip.destinationTimeZone - trip.originTimeZone;
+      DateTime newWakeDateTime = this.events[this.events.length - 1].endDate.add(new Duration(hours: 24 + (hoursLessOrMore * hoursLessOrMoreCounter)));
+      
+       this.events.add(new Event(type: sleepEventType, startDate: newBedDateTime, endDate: newWakeDateTime));
+    }
 
   }
 
