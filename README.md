@@ -2,9 +2,15 @@
 
 ![Alt text](img/logo.png?raw=true)
 
-It's a mobile application that indicates sleep shifts taking into consideration exercise and nutrition.
+It's a mobile application that indicates sleep shifts taking into consideration exercise and nutrition, in order to reduce circadian misalignment when changing time zones, as when astronauts travel to launch site and then to the ISS.
 
 The name of the project is the union of two words: "Goldberg" and "sleep".
+
+This repo contains the implementation of the scheduling algorithm that will be used on the app.
+
+[Project presentation](https://docs.google.com/presentation/d/1PecixftjuvF6Sc_vVn1cZ1xvCyqgzHFQ2GMoHYbDuhk/edit?usp=sharing)
+
+# Project presentation:
 
 ## Mission management
 
@@ -53,10 +59,11 @@ or scan the QR code:
 
 The algorithm is based on the article [How To Travel the World Without Jet lag](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2829880/) by Charmane I. Eastman and Helen J. Burgess, and the experiments described in [Advancing Human Circadian Rhythms with Afternoon Melatonin and Morning Intermittent Bright Light](https://academic.oup.com/jcem/article/91/1/54/2843255)
 
-1. The tMin* time is computed based on regular bed and wake time. If sleeping 7 or fewer hours per night, assume this is 2 hours before your usual wake time. If sleeping more, assume this is 3 hours before your usual wake time.
-2. Determine the adjustment direction to be applied to the circadian rhythms. If your destination has a greater time zone in the Greenwich Mean Time (GMT), you will need to phase advance, otherwise, you will need to phase delay.
-3. If you need to phase advance, expose yourself to sunlight or/and artificial light before going to sleep. Otherwise, do the opposite but, in this case, using melatonin 2 hours before DLMO (Dim Light Melatonin Onset)
-4. Shift your tMin by shifting you bedtime and wake time by one hour and a half later each day if phase advancing, or one hour earlier per day if phase delaying.
+1. The tMin* time is computed based on regular bed and wake time. If sleeping 7 or fewer hours per night, it’s assumed this is 2 hours before the usual wake time. If sleeping more, it’s assumed this is 3 hours before the usual wake time.
+2. The adjustment direction to be applied to the circadian rhythms is determined. If the destination has a greater time zone in the Greenwich Mean Time (GMT), phase advance will be needed, otherwise, phase delay.
+3. If phase advance is needed, sunlight or/and artificial light exposure will take place before going to sleep. Otherwise, the opposite will be done but, in this case, using melatonin 2 hours before DLMO (Dim Light Melatonin Onset).
+4. The tMin* is shifted by shifting the bedtime and wake time by one hour and a half later each day if phase advancing, or one hour earlier per day if phase delaying.
+
 
 *It is the sleeping moment where the body temperature is minimum. It is usually 3 hours before you wake up.
 
