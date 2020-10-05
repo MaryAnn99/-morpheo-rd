@@ -64,13 +64,6 @@ The algorithm is based on the article [How To Travel the World Without Jet lag](
 |:--:|
 | *Figure 4. Eastman, C. I., & Burgess, H. J. (2009). How To Travel the World Without Jet lag.* |
 
-## Docs
-
-- [Documentación (Word)](https://docs.google.com/document/d/1zDccoXDcLqYby8P1Qap7GuRd9sET5B3dVq53qzZNRKo/edit?usp=sharing)
-- [Treatments (Excel)](https://docs.google.com/spreadsheets/d/14SqCXEcUrHdp1wv3NaR8rFc2M1XSEwa0CBx99DemLyM/edit?usp=sharing)
-- [FLow diagram](https://lucid.app/documents/view/411b73e1-30dd-4ed8-8d8c-4dd9f1ddd910)
-- [Mockups](https://balsamiq.cloud/sa6o2rw/pqma720)
-
 ## References
 
 - [Jet Lag Rooster (example)](https://www.jetlagrooster.com/example)
